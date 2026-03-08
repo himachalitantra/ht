@@ -3,83 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aarush Sharma's Professional Portfolio</title>
+    <title>Himachali Tantra · Aarush Sharma</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Playfair + Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fcf9f4;
+            color: #1e1e24;
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
+
+        h1, h2, h3, .logo-font {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* professional theme color: deep burgundy + warm gold */
+        :root {
+            --primary: #b43b2b;
+            --primary-dark: #8b2c1f;
+            --accent: #e6b17e;
+            --gold: #c49a6c;
+            --dark-bg: #1f1c1a;
+            --light-bg: #f8f1e9;
+            --gray-soft: #efe7de;
+        }
+
+        /* glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,240,0.25);
+            border-radius: 40px;
+        }
+
+        /* header */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(127deg, #1a1512 0%, #322a25 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 20% 40%, rgba(230,177,126,0.2) 0%, transparent 45%);
+            animation: rotate 45s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg) translate(-10%, -10%); }
+            100% { transform: rotate(360deg) translate(-10%, -10%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1 1 400px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            line-height: 1;
+            background: linear-gradient(to right, #f5d7b3, #faf0e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin: 25px 0 30px;
+            color: #eac8af;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary);
+            padding: 8px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(180,59,43,0.4);
+        }
+
+        .hero-logo {
+            flex: 0 0 260px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 60px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,215,170,0.2);
+        }
+
+        .hero-logo img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.5);
+        }
+
+        /* navbar */
+        .navbar {
+            position: sticky;
+            top: 20px;
+            z-index: 999;
+            margin: 20px auto 0;
+            width: 90%;
+            max-width: 1300px;
+            background: rgba(255, 250, 240, 0.8);
+            backdrop-filter: blur(16px);
+            border-radius: 100px;
+            padding: 6px 30px;
+            border: 1px solid rgba(255,255,200,0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-img {
+            height: 55px;
+            width: auto;
+            border-radius: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2b241f;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* section */
         section {
-            padding: 20px;
+            padding: 90px 0;
         }
-        .about, .music, .portfolio, .gallery, .social {
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 8px;
+        }
+        .title-center {
+            text-align: center;
+            display: block;
+        }
+        .title-center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bilingual {
+            font-size: 1rem;
+            color: #6e5e51;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* about */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .profile-frame {
+            background: white;
+            border-radius: 50px 50px 50px 20px;
+            padding: 20px;
+            box-shadow: 30px 30px 40px rgba(0,0,0,0.1);
+            transition: 0.5s;
+        }
+        .profile-frame img {
+            width: 100%;
+            border-radius: 40px 40px 40px 10px;
+            display: block;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .badge {
+            background: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+            font-size: 1rem;
+        }
+
+        /* gallery 9 images */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .gallery-card {
+            background: var(--gray-soft);
+            border-radius: 40px;
+            overflow: hidden;
+            aspect-ratio: 1/1.2;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            transition: 0.4s;
+            border: 2px solid transparent;
+        }
+        .gallery-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02) translateY(-8px);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .img-placeholder {
+            background: linear-gradient(145deg, #bba690, #927b68);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* brand cards (fire, travel, yt) */
+        .brand-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin: 70px 0;
+        }
+        .brand-card {
+            background: white;
+            border-radius: 50px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            transition: 0.25s;
+            border: 1px solid #f0e0d0;
+        }
+        .brand-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 50px rgba(180,59,43,0.15);
+            border-color: var(--primary);
+        }
+        .brand-icon {
+            font-size: 3.8rem;
+            color: var(--primary);
             margin-bottom: 30px;
         }
-        .gallery img {
-            width: 100%;
-            max-width: 300px;
-            margin: 10px;
-            transition: transform 0.2s;
+        .brand-card h3 {
+            font-size: 2.2rem;
         }
-        .gallery img:hover {
-            transform: scale(1.1);
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background: #333;
+        .brand-link {
+            display: inline-block;
+            margin-top: 30px;
+            background: var(--primary);
             color: white;
+            padding: 12px 35px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* tracks */
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+        .track-item {
+            background: white;
+            border-radius: 40px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: 0.3s;
+        }
+        .track-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .track-item:hover a { color: white; }
+        .track-item a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* founder ceo */
+        .founder-card {
+            display: grid;
+            grid-template-columns: 0.7fr 1.3fr;
+            background: white;
+            border-radius: 80px;
+            padding: 50px;
+            gap: 50px;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+        .founder-img {
+            background: #2e2620;
+            border-radius: 60px;
+            overflow: hidden;
+        }
+        .founder-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .ceo-tag {
+            background: var(--primary);
+            color: white;
+            padding: 6px 25px;
+            border-radius: 60px;
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* social links */
+        .social-ring {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 50px 0;
+        }
+        .social-ring a {
+            background: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--dark-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+        .social-ring a:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.15);
+        }
+
+        .footer {
+            background: var(--dark-bg);
+            color: #eee;
+            border-radius: 80px 80px 0 0;
+            padding: 50px 0;
+        }
+
+        @media (max-width: 1000px) {
+            .about-grid, .founder-card, .brand-row, .tracks-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .navbar {
+                width: 95%;
+                padding: 10px 20px;
+            }
+            .nav-links {
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Aarush Sharma</h1>
-        <h2>Himachali Tantra</h2>
-    </header>
-    <section class="about">
-        <h2>About Me</h2>
-        <p>Welcome to my professional portfolio! I'm Aarush Sharma, a passionate creator from Himachal Pradesh.</p>
+    <!-- Navbar with logo -->
+    <div class="navbar">
+        <div class="nav-container">
+            <img src="Images/logo.jpg" alt="Himachali Tantra logo" class="logo-img" onerror="this.src='https://via.placeholder.com/140x55?text=LOGO';">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#music">Music</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#brands">Brands</a>
+                <a href="#founder">Founder</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section with logo big -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">हिमाचली तंत्र · HIMACHALI TANTRA</span>
+                <h1>AARUSH SHARMA</h1>
+                <div class="hero-tagline">SINGER · RAPPER · FOUNDER · CEO</div>
+                <p style="font-size:1.2rem; max-width:600px;">दिल से बनाने वाला कलाकार, जो हर गाने में एहसास भर देता है। Romantic, Rap, Pahadi & beyond.</p>
+                <div style="margin-top: 40px;">
+                    <a href="#music" class="btn" style="background:var(--primary); color:white; padding:16px 48px; border-radius:60px; text-decoration:none; font-weight:600; margin-right:16px;"><i class="fas fa-play"></i> Music</a>
+                    <a href="#founder" class="btn" style="background:transparent; border:2px solid var(--accent); color:var(--accent); padding:16px 48px; border-radius:60px; text-decoration:none; font-weight:600;">Entrepreneur</a>
+                </div>
+            </div>
+            <div class="hero-logo">
+                <img src="Images/1.jpg" alt="Himachali Tantra" onerror="this.src='https://via.placeholder.com/300x300?text=AARUSH';">
+            </div>
+        </div>
     </section>
-    <section class="music">
-        <h2>Music Tracks</h2>
-        <audio controls>
-            <source src="music-track.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+
+    <!-- ABOUT section (hindi+english) -->
+    <section id="about">
+        <div class="container">
+            <div class="bilingual">जानिए आरुष को · know the artist</div>
+            <h2 class="section-title">about Aarush</h2>
+            <div class="about-grid">
+                <div>
+                    <p><span class="about-highlight">Aarush Sharma</span> एक passionate singer, rapper और independent music artist हैं, जो दिल से music बनाते हैं — romance, feelings aur real-life vibes. Soulful melodies aur expressive rap dono ka sangam.</p>
+                    <p>Versatile artist across <strong>Romantic, Rap, Bollywood-style, Himachali (Pahadi) & English tracks</strong>. उनकी soft voice love songs में दिल छूती है, rap में powerful flow और attitude.</p>
+                    <div class="badge-container">
+                        <span class="badge">❤️ romantic</span>
+                        <span class="badge">🔥 desi rap</span>
+                        <span class="badge">🏔️ pahadi</span>
+                        <span class="badge">🌎 english</span>
+                        <span class="badge">🎬 bollywood vibe</span>
+                    </div>
+                    <p><i class="fas fa-quote-right" style="color:var(--primary);"></i> मकसद: दिल से गाना, सच्चे emotions के साथ perform करना, और listeners के moments का हिस्सा बनना।</p>
+                </div>
+                <div class="profile-frame">
+                    <img src="Images/1.jpg" alt="Aarush profile" onerror="this.src='https://via.placeholder.com/500x600?text=AARUSH+SHARMA';">
+                </div>
+            </div>
+        </div>
     </section>
-    <section class="portfolio">
-        <h2>Portfolio</h2>
-        <p>Here are some of my recent projects:</p>
-        <ul>
-            <li>Project 1: Description</li>
-            <li>Project 2: Description</li>
-            <li>Project 3: Description</li>
-        </ul>
+
+    <!-- MUSIC tracks with youtube links -->
+    <section id="music" style="background:var(--light-bg);">
+        <div class="container">
+            <div class="bilingual">लोकप्रिय गाने · popular tracks</div>
+            <h2 class="section-title">feel the music</h2>
+            <div class="tracks-grid">
+                <div class="track-item"><i class="fas fa-heart" style="font-size:2.5rem;"></i><h3>MOHABBAT SE KAM</h3><a href="https://www.youtube.com/watch?v=1j47rXUheF0" target="_blank"><i class="fab fa-youtube"></i> Watch</a></div>
+                <div class="track-item"><i class="fas fa-clock" style="font-size:2.5rem;"></i><h3>Subah Tak</h3><a href="https://www.youtube.com/watch?v=V1wz8FLx82M" target="_blank"><i class="fab fa-youtube"></i> Watch</a></div>
+                <div class="track-item"><i class="fas fa-moon" style="font-size:2.5rem;"></i><h3>RAAZ</h3><a href="https://youtu.be/5LBt73VgaZM" target="_blank"><i class="fab fa-youtube"></i> Watch</a></div>
+                <div class="track-item"><i class="fas fa-user" style="font-size:2.5rem;"></i><h3>Khud Se Mil</h3><a href="https://youtu.be/xhnLn144vpw" target="_blank"><i class="fab fa-youtube"></i> Watch</a></div>
+            </div>
+            <div style="text-align:center;"><a href="https://youtube.com/@himachalitantra" class="btn" style="background:var(--primary); color:white; padding:16px 48px; border-radius:60px; text-decoration:none; display:inline-block;"><i class="fab fa-youtube"></i> HIMACHALI TANTRA YT</a></div>
+        </div>
     </section>
-    <section class="gallery">
-        <h2>Gallery</h2>
-        <img src="image1.jpg" alt="Gallery image 1">
-        <img src="image2.jpg" alt="Gallery image 2">
-        <img src="image3.jpg" alt="Gallery image 3">
+
+    <!-- GALLERY with 9 images (Images/1.jpg to 9.jpg) -->
+    <section id="gallery">
+        <div class="container">
+            <div class="bilingual">विज़ुअल डायरी · visual diary</div>
+            <h2 class="section-title">gallery moments</h2>
+            <div class="gallery-grid">
+                <!-- geniune image paths with fallback -->
+                <div class="gallery-card"><img src="Images/1.jpg" alt="Aarush 1" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 1</div>';"></div>
+                <div class="gallery-card"><img src="Images/2.jpg" alt="Aarush 2" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 2</div>';"></div>
+                <div class="gallery-card"><img src="Images/3.jpg" alt="Aarush 3" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 3</div>';"></div>
+                <div class="gallery-card"><img src="Images/4.jpg" alt="Aarush 4" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 4</div>';"></div>
+                <div class="gallery-card"><img src="Images/5.jpg" alt="Aarush 5" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 5</div>';"></div>
+                <div class="gallery-card"><img src="Images/6.jpg" alt="Aarush 6" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 6</div>';"></div>
+                <div class="gallery-card"><img src="Images/7.jpg" alt="Aarush 7" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 7</div>';"></div>
+                <div class="gallery-card"><img src="Images/8.jpg" alt="Aarush 8" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 8</div>';"></div>
+                <div class="gallery-card"><img src="Images/9.jpg" alt="Aarush 9" onerror="this.parentElement.innerHTML='<div class=img-placeholder><i class=fas fa-camera></i> Image 9</div>';"></div>
+            </div>
+        </div>
     </section>
-    <section class="social">
-        <h2>Social Links</h2>
-        <a href="https://www.facebook.com/yourprofile">Facebook</a><br>
-        <a href="https://www.instagram.com/yourprofile">Instagram</a><br>
-        <a href="https://twitter.com/yourprofile">Twitter</a>
+
+    <!-- BRANDS section: Fire Village, Yatharth Travel, Himachali Tantra YT -->
+    <section id="brands" style="background:#efe2d6;">
+        <div class="container">
+            <div class="bilingual">उद्यम · ventures</div>
+            <h2 class="section-title"> founder & ceo </h2>
+            <div class="brand-row">
+                <div class="brand-card"><i class="fas fa-fire brand-icon"></i><h3>Fire Village Tournament</h3><p>Free Fire esports founder. Competitive gaming with desi swag.</p><a href="https://firevillagetournament.github.io/firevillage/" class="brand-link" target="_blank">visit <i class="fas fa-arrow-right"></i></a></div>
+                <div class="brand-card"><i class="fas fa-plane-departure brand-icon"></i><h3>Yatharth Tours & Travels</h3><p>CEO & digital head — travel agency making memories across India.</p><a href="https://yatharthtourtravels.com/" class="brand-link" target="_blank">visit <i class="fas fa-arrow-right"></i></a></div>
+                <div class="brand-card"><i class="fab fa-youtube brand-icon"></i><h3>Himachali Tantra</h3><p>Official YouTube channel. Music that feels — soul of Aarush.</p><a href="https://youtube.com/@himachalitantra" class="brand-link" target="_blank">subscribe <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+        </div>
     </section>
-    <footer>
-        <p>© 2026 Aarush Sharma</p>
+
+    <!-- FOUNDER section (detailed) -->
+    <section id="founder">
+        <div class="container">
+            <div class="bilingual">संस्थापक · the creator</div>
+            <h2 class="section-title">Aarush Sharma</h2>
+            <div class="founder-card">
+                <div class="founder-img"><img src="Images/1.jpg" alt="Aarush founder" onerror="this.src='https://via.placeholder.com/500x600?text=FOUNDER';"></div>
+                <div>
+                    <span class="ceo-tag"><i class="fas fa-crown"></i> Founder</span>
+                    <span class="ceo-tag" style="background:#2d1f1a;">🎤 Singer/Rapper</span>
+                    <h2 style="font-size:3rem; margin:20px 0;">Aarush Sharma</h2>
+                    <p><strong>Himachali Tantra</strong> के संस्थापक, <strong>Fire Village Tournament</strong> (Free Fire) के founder और <strong>Yatharth Tours & Travels</strong> के CEO. खुद digital संभालते हैं, हर ब्रांड में अपनी रौनक़ भरते हैं।</p>
+                    <p>संगीत हो या बिज़नेस — दिल से काम, सच्ची एनर्जी और पहाड़ी तड़का। Aarush की पहचान : versatile artist, sharp entrepreneur aur pahadi spirit.</p>
+                    <div style="margin-top:30px;">
+                        <a href="https://www.linkedin.com/in/aarush-sharma-927024273/" style="margin-right:20px; color:var(--primary);"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="https://www.instagram.com/pandit.2.0/" style="margin-right:20px;"><i class="fab fa-instagram"></i> pandit.2.0</a>
+                        <a href="https://www.instagram.com/himachalitantra/"><i class="fab fa-instagram"></i> himachali tantra</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONNECT / portfolio + all links -->
+    <section id="connect" style="background:var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title title-center">social · connect</h2>
+            <div class="social-ring">
+                <a href="https://ashusharma123.github.io/portfolio/" target="_blank"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/aarush-sharma-927024273/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/pandit.2.0/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/himachalitantra/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@himachalitantra" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://firevillagetournament.github.io/firevillage/" target="_blank"><i class="fas fa-fire"></i></a>
+                <a href="https://yatharthtourtravels.com/" target="_blank"><i class="fas fa-plane"></i></a>
+            </div>
+            <p style="text-align:center;">portfolio | linkedin | instagram (personal + brand) | youtube | fire village | yatharth travels</p>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container" style="text-align:center;">
+            <img src="Images/logo.jpg" alt="logo" style="height:70px; border-radius:50px; margin-bottom:20px;" onerror="this.style.display='none';">
+            <h3 style="color:white; font-size:2.5rem;">Himachali Tantra</h3>
+            <p style="margin:20px 0;">© 2026 Aarush Sharma · independent artist, founder & CEO. दिल से बनाया, हिमाचल से प्यार</p>
+            <div style="font-size:0.9rem;">crafted with <i class="fas fa-heart" style="color:var(--accent);"></i> in Himachal</div>
+        </div>
     </footer>
+
+    <script>
+        // smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const id = this.getAttribute('href');
+                if(id === "#") return;
+                const el = document.querySelector(id);
+                if(el) el.scrollIntoView({behavior:'smooth'});
+            });
+        });
+    </script>
 </body>
 </html>
